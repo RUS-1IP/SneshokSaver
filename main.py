@@ -8,6 +8,8 @@ import yt_dlp
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+TOKEN = 'ВАШ_ТОКЕН'
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('Привет! Отправь мне ссылку на видео TikTok, и я помогу тебе его скачать. Используй /cancel для отмены.')
 
@@ -47,7 +49,7 @@ def is_url1(text: str) -> bool:
     return re.match(url_pattern, text) is not None
 
 def main() -> None:
-    application = ApplicationBuilder().token('ВАШ_ТОКЕН').build()
+    application = ApplicationBuilder().token(TOKEN).build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("cancel", cancel))
